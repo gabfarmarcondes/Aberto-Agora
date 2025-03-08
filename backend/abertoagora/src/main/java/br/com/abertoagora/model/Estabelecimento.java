@@ -65,16 +65,4 @@ public class Estabelecimento {
     @NotBlank(message = "Um proprietário tem que ter um estabelecimento")
     private Proprietario proprietario;
 
-    public Estabelecimento(EstabelecimentoDTO estabelecimentoDTO) {
-        this.idEstabelecimento = estabelecimentoDTO.idEstabelecimento();
-        this.cnpj = estabelecimentoDTO.cnpj();
-        this.nomeEstabelecimento = estabelecimentoDTO.nomeEstabelecimento();
-        this.celularEstabelecimento = estabelecimentoDTO.celularEstabelecimento();
-        this.descricaoEstabelecimento = estabelecimentoDTO.descricaoEstabelecimento();
-        this.status = estabelecimentoDTO.status();
-        this.categoriaEstabelecimento = estabelecimentoDTO.categoriaEstabelecimento();
-        this.enderecoEstabelecimento = estabelecimentoDTO.enderecoEstabelecimento();
-        this.horarioFuncionamento = estabelecimentoDTO.horarioFuncionamento();
-        this.proprietario = estabelecimentoDTO.proprietario();
-    }
 }

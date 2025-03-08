@@ -53,13 +53,4 @@ public class Proprietario {
     @NotBlank(message = "Um proprietário tem que ter um estabelecimento")
     private List<Estabelecimento> estabelecimentoList = new ArrayList<>();
 
-    public Proprietario (ProprietarioDTO proprietarioDTO) {
-        this.idProprietario = proprietarioDTO.idProprietario();
-        this.nomeProprietario = proprietarioDTO.nomeProprietario();
-        this.cpfProprietario = proprietarioDTO.cpfProprietario();
-        this.celularProprietario = proprietarioDTO.celularProprietario();
-        this.emailProprietario = proprietarioDTO.emailProprietario();
-        this.senhaProprietario = proprietarioDTO.senhaProprietario();
-        this.estabelecimentoList = proprietarioDTO.estabelecimentoList();
-    }
 }

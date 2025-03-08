@@ -1,6 +1,5 @@
 package br.com.abertoagora.model;
 
-import br.com.abertoagora.dto.AdminDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -30,10 +29,4 @@ public class ADMIN {
     @NotBlank(message = "A Senha do ADMIN não pode estar vazio")
     private String senhADMIN;
 
-    public ADMIN(AdminDTO adminDTO) {
-        this.idADMIN = adminDTO.idADMIN();
-        this.emailADMIN = adminDTO.emailADMIN();
-        this.senhADMIN = adminDTO.senhaADMIN();
-
-    }
 }
