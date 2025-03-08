@@ -49,13 +49,4 @@ public class Usuario {
     @NotBlank(message = "Data cadastro do usuário não pode estar vazio")
     private LocalDate dataCadastro;
 
-    public Usuario (UsuarioDTO usuarioDTO) {
-        this.idUsuario = usuarioDTO.idUsuario();
-        this.nomeUsuario = usuarioDTO.nomeUsuario();
-        this.cpfUsuario = usuarioDTO.cpfUsuario();
-        this.emailUsuario = usuarioDTO.emailUsuario();
-        this.senhaUsuario = usuarioDTO.senhaUsuario();
-        this.roleUsuario = usuarioDTO.roleUsuario();
-        this.dataCadastro = usuarioDTO.dataCadastro();
-    }
 }
