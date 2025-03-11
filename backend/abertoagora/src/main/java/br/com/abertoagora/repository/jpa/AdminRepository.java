@@ -1,4 +1,4 @@
-package br.com.abertoagora.repository;
+package br.com.abertoagora.repository.jpa;
 
 import br.com.abertoagora.model.ADMIN;
 import org.springframework.data.jpa.repository.JpaRepository;

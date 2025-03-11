@@ -1,6 +1,5 @@
 package br.com.abertoagora.model;
 
-import br.com.abertoagora.dto.EstabelecimentoDTO;
 import br.com.abertoagora.model.attributes.Endereco;
 import br.com.abertoagora.model.attributes.Status;
 import jakarta.persistence.*;
