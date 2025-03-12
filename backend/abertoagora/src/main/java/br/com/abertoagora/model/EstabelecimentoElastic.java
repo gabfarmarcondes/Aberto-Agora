@@ -17,7 +17,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 public class EstabelecimentoElastic {
 
     @Id
-    private String id;
+    private String idEstabelecimento ;
 
     private String cnpj;
     private String nomeEstabelecimento;
