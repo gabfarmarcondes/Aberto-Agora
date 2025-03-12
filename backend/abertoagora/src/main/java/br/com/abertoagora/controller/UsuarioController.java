@@ -3,11 +3,10 @@ package br.com.abertoagora.controller;
 import br.com.abertoagora.dto.UsuarioDTO;
 import br.com.abertoagora.services.UsuarioServices;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.time.LocalDate;
+
 
 @RestController
 @RequestMapping("/usuarios")
@@ -19,9 +18,23 @@ public class UsuarioController {
         this.usuarioServices = usuarioServices;
     }
 
-    @GetMapping
-    public ResponseEntity<UsuarioDTO> listar() {
+    @GetMapping("/listar/todosUsuarios")
+    public ResponseEntity<UsuarioDTO> getAllUsuarios() {
         return usuarioServices.getAllUsuarios();
     }
 
+    @GetMapping("/buscar/{idUsuario}")
+    public ResponseEntity<UsuarioDTO> getByIdUsuario(@PathVariable Long idUsuario) {return usuarioServices.getByIdUsuario(idUsuario);}
+
+    @GetMapping("/buscar/{cpfUsuario}")
+    public ResponseEntity<UsuarioDTO> getByCpfUsuario (@PathVariable String cpfUsuario) {return usuarioServices.getByCpfUsuario(cpfUsuario);}
+
+    @GetMapping("/buscar/{nomeUsuario}")
+    public ResponseEntity<UsuarioDTO> getByNomeUsuario (@PathVariable String nomeUsuario) {return usuarioServices.getByNomeUsuario(nomeUsuario);}
+
+    @GetMapping("/buscar/{emailUsuario}")
+    public ResponseEntity<UsuarioDTO> getByEmailUsuario(@PathVariable String emailUsuario) {return usuarioServices.getByEmailUsuario(emailUsuario);}
+
+    @GetMapping("/buscar{dataCadastro}")
+    public ResponseEntity<UsuarioDTO> getByDataCadastro(LocalDate dataCadastro) {return usuarioServices.getByDataCadastro(dataCadastro);}
 }
