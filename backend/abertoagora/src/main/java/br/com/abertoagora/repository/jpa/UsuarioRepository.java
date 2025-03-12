@@ -1,4 +1,4 @@
-package br.com.abertoagora.repository;
+package br.com.abertoagora.repository.jpa;
 
 import br.com.abertoagora.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -22,5 +22,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Optional<Usuario> findByEmailUsuario (String emailUsuario);
 
     List<Usuario> findByDataCadastro (LocalDate dataCadastro);
+
+    List<Usuario> findAll();
 
 }
