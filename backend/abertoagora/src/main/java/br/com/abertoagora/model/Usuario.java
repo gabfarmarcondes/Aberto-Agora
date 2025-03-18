@@ -4,6 +4,7 @@ import br.com.abertoagora.dto.UsuarioDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -47,6 +48,7 @@ public class Usuario {
 
     @Column(name = "usuario_dataCadastro", nullable = false)
     @NotBlank(message = "Data cadastro do usuário não pode estar vazio")
+    @PastOrPresent(message = "A data de cadastro deve ser no passado ou presente")
     private LocalDate dataCadastro;
 
 }
