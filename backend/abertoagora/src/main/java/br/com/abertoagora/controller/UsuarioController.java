@@ -1,5 +1,6 @@
 package br.com.abertoagora.controller;
 
+import br.com.abertoagora.config.ResponseWrapper;
 import br.com.abertoagora.dto.UsuarioDTO;
 import br.com.abertoagora.services.UsuarioServices;
 import org.springframework.http.ResponseEntity;
@@ -36,5 +37,8 @@ public class UsuarioController {
     public ResponseEntity<UsuarioDTO> getByEmailUsuario(@PathVariable String emailUsuario) {return usuarioServices.getByEmailUsuario(emailUsuario);}
 
     @GetMapping("/buscar{dataCadastro}")
-    public ResponseEntity<UsuarioDTO> getByDataCadastro(LocalDate dataCadastro) {return usuarioServices.getByDataCadastro(dataCadastro);}
+    public ResponseEntity<UsuarioDTO> getByDataCadastro(@PathVariable LocalDate dataCadastro) {return usuarioServices.getByDataCadastro(dataCadastro);}
+
+    @PostMapping("/criar")
+    public ResponseEntity<ResponseWrapper<UsuarioDTO>> createUsuario (@RequestBody UsuarioDTO usuarioDTO) {return usuarioServices.createUsuario(usuarioDTO);}
 }
