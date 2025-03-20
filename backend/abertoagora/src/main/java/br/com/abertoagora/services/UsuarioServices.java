@@ -45,10 +45,15 @@ public class UsuarioServices {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    public ResponseEntity<UsuarioDTO> getByNomeUsuario (String nomeUsuario) {
-        List<Usuario> usuarios = usuarioRepository.findByNomeUsuario(nomeUsuario);
-        return usuarios.stream().map(value -> ResponseEntity.ok().body(modelMapper.map(value, UsuarioDTO.class)))
-                .findAny().orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<List<UsuarioDTO>> getByNomeUsuario (String nomeUsuario) {
+        List<UsuarioDTO> usuarioDTOS = usuarioRepository.findByNomeUsuario(nomeUsuario).stream()
+                .map(usuario -> modelMapper.map(usuario, UsuarioDTO.class))
+                .toList();
+
+        return usuarioDTOS.isEmpty()
+                ? ResponseEntity.noContent().build()
+                : ResponseEntity.ok().body(usuarioDTOS);
+
     }
 
     public ResponseEntity<UsuarioDTO> getByEmailUsuario (String emailUsuario) {
@@ -57,16 +62,24 @@ public class UsuarioServices {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    public ResponseEntity<UsuarioDTO> getByDataCadastro (LocalDate dataCadastro) {
-        List<Usuario> usuarios = usuarioRepository.findByDataCadastro(dataCadastro);
-        return usuarios.stream().map(value -> ResponseEntity.ok().body(modelMapper.map(value, UsuarioDTO.class)))
-                .findAny().orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<List<UsuarioDTO>> getByDataCadastro (LocalDate dataCadastro) {
+        List<UsuarioDTO> usuarioDTOS = usuarioRepository.findByDataCadastro(dataCadastro).stream()
+                .map(usuario -> modelMapper.map(usuario, UsuarioDTO.class))
+                .toList();
+
+        return usuarioDTOS.isEmpty()
+                ? ResponseEntity.noContent().build()
+                : ResponseEntity.ok().body(usuarioDTOS);
     }
 
-    public ResponseEntity<UsuarioDTO> getAllUsuarios() {
-        List<Usuario> usuarios = usuarioRepository.findAll();
-        return usuarios.stream().map(value -> ResponseEntity.ok().body(modelMapper.map(value, UsuarioDTO.class)))
-                .findAny().orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<List<UsuarioDTO>> getAllUsuarios() {
+        List<UsuarioDTO> usuarioDTOS = usuarioRepository.findAll().stream()
+                .map(usuario -> modelMapper.map(usuario, UsuarioDTO.class))
+                .toList();
+
+        return usuarioDTOS.isEmpty()
+                ? ResponseEntity.noContent().build()
+                : ResponseEntity.ok().body(usuarioDTOS);
     }
 
     public ResponseEntity<ResponseWrapper<UsuarioDTO>> createUsuario(@Valid @RequestBody UsuarioDTO usuarioDTO) {
