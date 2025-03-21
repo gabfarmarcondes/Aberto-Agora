@@ -3,6 +3,7 @@ package br.com.abertoagora.controller;
 import br.com.abertoagora.config.ResponseWrapper;
 import br.com.abertoagora.dto.UsuarioDTO;
 import br.com.abertoagora.services.UsuarioServices;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,4 +40,7 @@ public class UsuarioController {
 
     @PostMapping("/criar")
     public ResponseEntity<ResponseWrapper<UsuarioDTO>> createUsuario (@RequestBody UsuarioDTO usuarioDTO) {return usuarioServices.createUsuario(usuarioDTO);}
+
+    @PutMapping("/atualizar/{id}")
+    public ResponseEntity<ResponseWrapper<UsuarioDTO>> updateUsuario (@Valid @RequestBody UsuarioDTO usuarioDTO, @PathVariable Long idUsuario) {return usuarioServices.updateUsuario(usuarioDTO, idUsuario);}
 }

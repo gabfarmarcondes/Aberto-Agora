@@ -13,7 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -101,5 +103,15 @@ public class UsuarioServices {
             return ResponseEntity.internalServerError()
                     .body(new ResponseWrapper<>("Erro interno no servidor", null));
         }
+    }
+
+    public ResponseEntity<ResponseWrapper<UsuarioDTO>> updateUsuario (@Valid @RequestBody UsuarioDTO usuarioDTO, @PathVariable  Long idUsuario) {
+            Usuario usuario = usuarioRepository.findByIdUsuario(idUsuario)
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não Encontrado"));
+
+            modelMapper.map(usuarioDTO, usuario);
+            usuario = usuarioRepository.save(usuario);
+            UsuarioDTO usuarioAtualizadoDTO = modelMapper.map(usuario, UsuarioDTO.class);
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseWrapper<>("Usuário Atualizado com Sucesso", usuarioAtualizadoDTO));
     }
 }
