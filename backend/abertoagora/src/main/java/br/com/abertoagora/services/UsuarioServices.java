@@ -114,4 +114,12 @@ public class UsuarioServices {
             UsuarioDTO usuarioAtualizadoDTO = modelMapper.map(usuario, UsuarioDTO.class);
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseWrapper<>("Usuário Atualizado com Sucesso", usuarioAtualizadoDTO));
     }
+
+    public ResponseEntity<Usuario> deleteUsuario (@PathVariable Long idUsuario) {
+        Usuario usuario = usuarioRepository.findByIdUsuario(idUsuario)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não Encontrado"));
+
+        usuarioRepository.delete(usuario);
+        return ResponseEntity.noContent().build();
+    }
 }
